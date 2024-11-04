@@ -114,7 +114,17 @@ public class ConnectFour {
     public Location getTopOfColumn(int column) {
         // Question 1
         // TODO
+        for (int i=0; i<board.length;i++){
         
+            if (!(board[i][column].equals(Location.EMPTY))){
+                if (board[i][column].equals(Location.BLACK )){
+                    return Location.BLACK;
+                }
+                else {
+                    return Location.RED;
+                }
+            }
+        }
         return Location.EMPTY;
     }
     
@@ -129,8 +139,14 @@ public class ConnectFour {
     public int getHeightOfColumn(int column) {
         // Question 2
         // TODO
-        
-        return 0;
+        int yep=0;
+        for (int i=0; i<board.length;i++){
+            if (!(board[i][column].equals(Location.EMPTY))){
+                yep=6-i;
+                break;
+            }
+            }
+        return yep;
     }
     
     /**
@@ -146,6 +162,23 @@ public class ConnectFour {
     public void dropToken(int column) {
         // Question 3
         // TODO
+        if (column<=6 && column >=0){
+            for (int i=board.length-1; i>=0;i--){
+                if (board[i][column].equals(Location.EMPTY)){
+                    if (redTurn){
+                        board[i][column]=Location.RED;
+                        redTurn=false;
+                        return;
+                    }
+                    else {
+                        board[i][column]=Location.BLACK;
+                        redTurn=true;
+                        return;
+                    }
+                }
+            }
+            //throw new ColumnFullException("full");
+        }
         
     }
     
@@ -170,6 +203,31 @@ public class ConnectFour {
         //       along a column.
         
         // TODO
+        int fill=0;
+        for (int c=0; c<7;c++){
+            int check=0;
+             if (getHeightOfColumn(c)==6){
+                 fill++;
+                for (int i=0; i<board.length; i++){
+                    if (board[i][c].equals(Location.BLACK)){
+                        check++;
+                    }
+                    else if (board[i][c].equals(Location.RED)) {
+                        check--;
+                    }
+                }
+                }
+            if (check==7){
+                return Result.BLACKWIN;
+            }
+            else if (check==-7){
+                return Result.REDWIN;
+            }
+            System.out.println(fill);
+            }
+        if (fill==6){
+            return Result.TIE;
+        }
         
         return Result.NONE;
     }
