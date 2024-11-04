@@ -253,8 +253,8 @@ public class ConnectFour {
         // TODO
         String yolo="";
         for (int m=0; m<board.length; m++){
-        for (int i=0;i<7;i++){
             yolo+="|";
+        for (int i=0;i<7;i++){
             if (board[m][i].equals(Location.BLACK)){
                 yolo+="B";
             }
