@@ -223,7 +223,7 @@ public class ConnectFour {
             else if (check==-7){
                 return Result.REDWIN;
             }
-            System.out.println(fill);
+            //System.out.println(fill);
             }
         if (fill==6){
             return Result.TIE;
@@ -251,8 +251,22 @@ public class ConnectFour {
     public String toString() {
         // Question 5
         // TODO
-        
-        return "";
+        String yolo="";
+        for (int m=0; m<board.length; m++){
+        for (int i=0;i<7;i++){
+            yolo+="|";
+            if (board[m][i].equals(Location.BLACK)){
+                yolo+="B";
+            }
+            else if (board[m][i].equals(Location.RED)){
+               yolo+="R";
+            }
+            yolo+="|";
+        }
+            yolo+="\n";
+            }
+        System.out.println(yolo);
+        return yolo;
     }
 
 
